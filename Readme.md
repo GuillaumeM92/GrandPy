@@ -22,3 +22,6 @@ L'utilisateur ouvre son navigateur et se rend sur grandpyweb.herokuapp.com :
 Les API suivantes ont été utilisées pour ce projet :  
 * [Google maps](https://developers.google.com/maps/get-started/)  
 * [Medi Wiki](https://www.mediawiki.org/wiki/API:Main_page) APIs.
+
+## Remerciements
+Merci à Peter Graham "https://github.com/6" pour sa liste de stopwords qui m'a été bien utile dans la conception du parser : https://github.com/6/stopwords-json.
