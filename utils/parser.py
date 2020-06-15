@@ -25,4 +25,7 @@ def parse(question):
 
     answer_string = " ".join(answer)   # convert answer to a string
 
-    return(answer_string)
+    if answer_string == "":
+        return("ignore")
+    else:
+        return(answer_string)
