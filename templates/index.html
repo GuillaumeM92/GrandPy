@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>GrandPy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/stylesheet.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+</head>
+
+<body>
+    <h1>
+	    <img src="/static/img/grandpa.png" alt="smart_grandpa" id="grandpy">
+	    <br> Bien le bonjour ! Je m'appelle GrandPy, à ton service !
+    </h1>
+
+    <form id="userInput" method="POST">
+        <input type="text" id="user_input" placeholder="Demander une adresse à GrandPy"><br>
+        <input id="submit" type="submit" value="Envoyer"/>
+    </form>
+
+    <div hidden class="spinner" id="loading">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+    
+    <div id="chat">
+        <div>Je ne suis peut-être plus tout jeune, mais j'ai encore l'esprit assez vif ! Dis-moi où tu veux aller et je ferai de mon mieux pour te renseigner...</div>
+    </div>
+
+    <div hidden id="map"></div>
+
+    <script id ="mapapi" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY6OVTPCMm5sOekwgVurBENPOdn4h_EtM&language=fr&callback=initMap" defer></script>
+    <script src="static/js/jquery-3.5.1.min.js"></script>
+    <script src="static/js/grandpyText.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <footer>
+        <div id="footer">
+            <div id="footerOne"> Projet réalisé par Guillaume Merle <br> Étudiant chez OpenClassrooms </div>
+            <div id="footerTwo"> <a href="https://github.com/GuillaumeM92/"><img alt="github_link" id ="github" title="Lien Github" src="/static/img/github_logo_64.png"></a> </div>
+            <div id="footerThree"> <a href="https://twitter.com/Guillaume010101"><img alt="twitter_link" id ="twitter" title="Lien Twitter" src="/static/img/twitter_logo_64.png"></a> </div>
+        </div>
+            
+    </footer>
+</body>
+
+</html>
