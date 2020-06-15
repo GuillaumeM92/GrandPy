@@ -4,8 +4,8 @@ Repository pour le Projet 7 de mon parcours de formation "Développeur d'Applica
 Adresse du site : https://grandpyweb.herokuapp.com/
 
 ## Description du Projet
-This is a web application build with **Flask** to help user to find an address and learn more about the story of this location.
-
+Ce projet est une application web construite avec **Flask** qui permet à l'utilisateur de discuter avec GrandPy pour lui demander l'adresse d'un endroit qui l'intéesse.  
+GrandPy en profite alors pour raconter une anecdote qu'il juge pertinente (tirée de Wikiperdia).
 ## Fonctionnalités
 * Interactions en AJAX : l'utilisateur envoie sa question en appuyant sur entrée et la réponse s'affiche directement dans l'écran, sans recharger la page.
 * Utilisation de l'API de Google Maps et celle de Media Wiki.
