@@ -23,17 +23,19 @@ footer {
 #chat {
   width: 96%;
   height: 200%;
+  margin-top: 0.5em;
   margin-left: 2%;
+  margin-right: 2%;
   margin-bottom: 30px;
   font-size: 84%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   display: inline-block;
-  float: left;
 }
 
 #chat > div {
   padding: 1%;
-  margin-top: 2%;
+  margin-top: 0.6em;
   margin-left: 2%;
   margin-right: 33%;
   background-color: #69EA78;
@@ -43,20 +45,22 @@ footer {
   text-align: left;
   display: inline-block;
   float: left;
+  clear: both;
 }
 
 #chat > p {
   padding: 1%;
-  margin-top: 2%;
+  margin-top: 1em;
   margin-left: 58%;
   margin-right: 2%;
-  text-align: left;
   background-color: #7CC8FF;
   border: 2px solid black;
   border-radius: 4px;
   color: black;
   text-align: left;
+  display: inline-block;
   float: right;
+  clear: both;
 }
 
 /* IDs */
@@ -117,14 +121,16 @@ footer {
 /* Loading Dots Animation */
 
 .spinner {
-  margin: 10px auto 0;
-  width: 70px;
+  width: 99%;
+  margin-right: 1%;
+  margin-top: 10vh;
   text-align: center;
+  position: fixed;
 }
 
 .spinner > div {
-  width: 18px;
-  height: 18px;
+  width: 1em;
+  height: 1em;
   background-color: white;
 
   border-radius: 100%;

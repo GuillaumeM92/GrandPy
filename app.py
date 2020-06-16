@@ -40,11 +40,9 @@ def question_handler():
 				return jsonify(formatted_address, coordinates, cleaned_extract)
 
 	except ConnectionError:
-		return jsonify(gmaps_json_response, gmaps_json_response, gmaps_json_response)
-		#return "Une erreur est survenue. Vérifiez votre connexion puis réessayez."
+		return jsonify("connection_error")
 	except KeyError:
-		return jsonify(gmaps_json_response, gmaps_json_response, gmaps_json_response)
-		#return "Une erreur innatendue est survenue. Merci de réessayer ultérieurement."
+		return jsonify("json_error")
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run()
