@@ -4,45 +4,37 @@ import utils.mediawiki as mwiki
 import requests
 from flask import Flask, jsonify, request, render_template, json
 
+
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+    return render_template('index.html', GMAPS_API_KEY=gmaps.GOOGLE_API_KEY)
 
-@app.route('/question_handler', methods = ['GET', 'POST'])
+
+@app.route('/question_handler', methods=['GET', 'POST'])
 def question_handler():
-	question = parser.get_question()
-	
-	try:
-		parsed_question = parser.parse(question)
+    question = request.get_json()
+    parsed_question = parser.parse(question["user_input_value"])
 
-		if parsed_question == "ignore":
-			return jsonify(parsed_question)
-			pass
-		else:
-			gmaps_json_response = gmaps.get_json_response(parsed_question)
+    if parsed_question != "ignore":
+        gmaps_json_data = gmaps.get_json_data(parsed_question)
 
-			if gmaps_json_response["status"] == "ZERO_RESULTS":
-				return jsonify(gmaps_json_response)
-				pass
+        print(gmaps_json_data)
 
-			else:
-				formatted_address = gmaps.get_formatted_address(gmaps_json_response)
-				coordinates = gmaps.get_coordinates(gmaps_json_response)
-				wiki_coords = mwiki.format_coords(coordinates)
-				mwiki_json_response = mwiki.get_json_response(wiki_coords)
-				page_id = mwiki.get_page_id(mwiki_json_response)
-				title = mwiki.get_title(mwiki_json_response)
-				extract = mwiki.get_extract(title, page_id)
-				cleaned_extract = mwiki.clean_extract(extract)
-				#print(gmaps_json_response)
-				return jsonify(formatted_address, coordinates, cleaned_extract)
+        if gmaps_json_data != "ZERO_RESULTS":
+            try:
+                extract = mwiki.get_extract(gmaps_json_data[1])
+                return jsonify(gmaps_json_data[0], gmaps_json_data[1], extract)
+            except (KeyError, ConnectionError):
+                return jsonify("error")
 
-	except ConnectionError:
-		return jsonify("connection_error")
-	except KeyError:
-		return jsonify("json_error")
+        else:
+            return jsonify("ZERO_RESULTS")
+    else:
+        return jsonify("ignore")
+
 
 if __name__ == "__main__":
-	app.run()
+    app.run()

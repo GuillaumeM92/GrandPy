@@ -20,6 +20,8 @@ question15 = "je voudrais situer le désert de gobie"
 question16 = "comment pourrais-je trouver la gare montparnasse ?"
 question17 = "Salut GrandPy :) Peux-tu m'indiquer comment me rendre boulevard sébastopol à Paris ? Merci."
 
+ignored_question = ""
+
 
 def test_parse():
     assert parser.parse(question00) == 'openclassrooms'
@@ -40,3 +42,5 @@ def test_parse():
     assert parser.parse(question15) == 'désert gobie'
     assert parser.parse(question16) == 'gare montparnasse'
     assert parser.parse(question17) == 'boulevard sébastopol paris'
+
+    assert parser.parse(ignored_question) == "ignore"

@@ -1,7 +1,7 @@
 var myLatLng;
 
 function initMap() {
-    
+
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
         center: myLatLng
@@ -39,13 +39,11 @@ $("#submit").on("click", function(e) {
             dataType: "json"
             }).done(
                 function(data) {
-                    if (data["status"] == "ZERO_RESULTS") {
+                    if (data == "ZERO_RESULTS") {
                         chat.appendChild(newGrandpyText).innerHTML = getRandomText(no_result);
                     } else if (data == "ignore") {
                         chat.appendChild(newGrandpyText).innerHTML = ":)";
-                    } else if (data == "connection_error") {
-                        chat.appendChild(newGrandpyText).innerHTML = "Une erreur est survenue. Vérifiez votre connexion puis réessayez.";
-                    } else if (data == "json_error") {
+                    } else if (data == "error") {
                         chat.appendChild(newGrandpyText).innerHTML = "Une erreur innatendue est survenue. Merci de réessayer ultérieurement.";
                     } else {
                     chat.appendChild(newGrandpyText).innerHTML = (getRandomText(answer1) + "<br>" + getRandomText(answer2) + data[0] + "<br>" + "<br>" + getRandomText(anecdote) + data[2]);
@@ -59,7 +57,7 @@ $("#submit").on("click", function(e) {
                 function() {
                     updateScroll();
             });
-            
+
         setTimeout(function(){document.getElementById("loading").hidden = true;}, 2300);
         setTimeout(function(){document.getElementById("map").hidden = false;}, 2300);
         }

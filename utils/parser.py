@@ -1,31 +1,35 @@
 import re
-from flask import request
+from flask import request, jsonify
 from utils.stopwords import stopwords
 
-def get_question():
-    question = request.get_json()
-    return question["user_input_value"]
 
 def parse(question):
     answer = []
 
-    lowered_question = question.lower()   # remove capital letters
+    try:
+        lowered_question = question.lower()   # remove capital letters
 
-    remove_dash = lowered_question.replace("-", " ").replace("'", " ")   # replace - and ' symbols with space
+        # replace - and ' symbols with space
+        remove_dash = lowered_question.replace("-", " ").replace("'", " ")
 
-    stripped_question = re.sub(r'[^\w\s]', '', remove_dash)   # only keep alphanumerical characters
+        # only keep alphanumerical characters
+        stripped_question = re.sub(r'[^\w\s]', '', remove_dash)
 
-    split_question = stripped_question.split(' ')   # split on space
+        split_question = stripped_question.split(' ')   # split on space
 
-    for word in split_question:   # check if the words are in the stopwords list
-        if word in stopwords:
-            pass
+        for word in split_question:   # check if the words are in the stopwords list
+            if word in stopwords:
+                pass
+            else:
+                answer.append(word)   # if not, add to the answer
+
+        answer_string = " ".join(answer)   # convert answer to a string
+
+        if answer_string == "":
+            return("ignore")
+
         else:
-            answer.append(word)   # if not, add to the answer
+            return(answer_string)
 
-    answer_string = " ".join(answer)   # convert answer to a string
-
-    if answer_string == "":
-        return("ignore")
-    else:
-        return(answer_string)
+    except Exception as e:
+        return ("An exception occured while parsing the question.", e)
