@@ -105,6 +105,7 @@ gibberish_parsed_question = "qsdqsdqsd"
 
 
 def test_get_json_data():
-  assert gmaps.get_json_data(parsed_question) == (
-      gmaps_mock['results'][0]['formatted_address'], gmaps_mock['results'][0]['geometry']['location'])
-  assert gmaps.get_json_data(gibberish_parsed_question) == gmaps_no_result_mock
+    assert gmaps.get_json_data(parsed_question) == (
+        gmaps_mock['results'][0]['formatted_address'], gmaps_mock['results'][0]['geometry']['location'])
+    assert gmaps.get_json_data(
+        gibberish_parsed_question) == gmaps_no_result_mock["status"]
