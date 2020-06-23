@@ -1,46 +1,66 @@
+import unittest
 from utils.parser import Parser
 
 # mock questions list
-question00 = "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
-question01 = "A quel endroit se trouve le Palais de l'Elysée ?"
-question02 = "où est situé l'opéra de sydney"
-question03 = "Je souhaiterais aller au 59 boulevard de Strasbourg, 75010 Paris s'il te plaît."
-question04 = "comment faire pour aller au métro chatelet"
-question05 = "Bonjour, quelle est l'adresse de l'hôpital Georges Pompidou?"
-question06 = "Hello GrandPy, ça ne te dérange pas de me rappeler où se trouve la ligne Maginot ?"
-question07 = "Je dois me rendre boulevard Saint Germain"
-question08 = "Où se trouve la fontaine Saint-Michel à Paris ?"
-question09 = "Où sont les chutes du Niagara ?"
-question10 = "Bonjour bot!! Ou se trouve la Tour Eiffel?"
-question11 = "Où se trouve l'Ouganda ?"
-question12 = "Où puis-je trouver la Maison Blanche?"
-question13 = "Où est posée la statue de la Liberté ?"
-question14 = "Salut GrandPy Est-ce que tu connais l'adresse de l'Opéra de Paris?"
-question15 = "je voudrais situer le désert de gobie"
-question16 = "comment pourrais-je trouver la gare montparnasse ?"
-question17 = "Salut GrandPy :) Peux-tu m'indiquer comment me rendre boulevard sébastopol à Paris ? Merci."
+mock_questions_list = [
+    "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?",
+    "A quel endroit se trouve le Palais de l'Elysée ?",
+    "où est situé l'opéra de sydney",
+    "Je souhaiterais aller au 59 boulevard de Strasbourg, 75010 Paris s'il te plaît.",
+    "comment faire pour aller au métro chatelet",
+    "Bonjour, quelle est l'adresse de l'hôpital Georges Pompidou?",
+    "Hello GrandPy, ça ne te dérange pas de me rappeler où se trouve la ligne Maginot ?",
+    "Je dois me rendre boulevard Saint Germain",
+    "Où se trouve la fontaine Saint-Michel à Paris ?",
+    "Où sont les chutes du Niagara ?",
+    "Bonjour bot!! Ou se trouve la Tour Eiffel?",
+    "Où se trouve l'Ouganda ?",
+    "Où puis-je trouver la Maison Blanche?",
+    "Où est posée la statue de la Liberté ?",
+    "Salut GrandPy Est-ce que tu connais l'adresse de l'Opéra de Paris?",
+    "je voudrais situer le désert de gobie",
+    "comment pourrais-je trouver la gare montparnasse ?",
+    "Salut GrandPy :) Peux-tu m'indiquer comment me rendre boulevard sébastopol à Paris ? Merci.",
+    ""
+]
 
-ignored_question = ""
+# expected results
+expected_results = [
+    'openclassrooms',
+    'palais elysée',
+    'opéra sydney',
+    '59 boulevard strasbourg 75010 paris',
+    'métro chatelet',
+    'hôpital georges pompidou',
+    'ligne maginot',
+    'boulevard saint germain',
+    'fontaine saint michel paris',
+    'chutes niagara',
+    'tour eiffel',
+    'ouganda',
+    'maison blanche',
+    'statue liberté',
+    'opéra paris',
+    'désert gobie',
+    'gare montparnasse',
+    'boulevard sébastopol paris',
+    "ignore"
+]
+
+class TestWikiMedia(unittest.TestCase):
+
+    def test_parse_auto(self):
+        iterator = 0
+
+        for questions in mock_questions_list:
+            self.parser_test = Parser(questions)
+            test_result = self.parser_test.parse()
+
+            expected_result = expected_results[iterator]
+            self.assertEqual(test_result, expected_result)
+
+            iterator += 1
 
 
-def test_parse():
-    assert parser.parse(question00) == 'openclassrooms'
-    assert parser.parse(question01) == 'palais elysée'
-    assert parser.parse(question02) == 'opéra sydney'
-    assert parser.parse(question03) == '59 boulevard strasbourg 75010 paris'
-    assert parser.parse(question04) == 'métro chatelet'
-    assert parser.parse(question05) == 'hôpital georges pompidou'
-    assert parser.parse(question06) == 'ligne maginot'
-    assert parser.parse(question07) == 'boulevard saint germain'
-    assert parser.parse(question08) == 'fontaine saint michel paris'
-    assert parser.parse(question09) == 'chutes niagara'
-    assert parser.parse(question10) == 'tour eiffel'
-    assert parser.parse(question11) == 'ouganda'
-    assert parser.parse(question12) == 'maison blanche'
-    assert parser.parse(question13) == 'statue liberté'
-    assert parser.parse(question14) == 'opéra paris'
-    assert parser.parse(question15) == 'désert gobie'
-    assert parser.parse(question16) == 'gare montparnasse'
-    assert parser.parse(question17) == 'boulevard sébastopol paris'
-
-    assert parser.parse(ignored_question) == "ignore"
+if __name__ == '__main__':
+    unittest.main()
