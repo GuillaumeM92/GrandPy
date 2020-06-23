@@ -10,17 +10,18 @@ class GmapsFetcher():
 
     def get_json_data(self):
 
-        try:
-            gmaps_json_response = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + self.parsed_question +
-                                               "&key=" + GOOGLE_API_KEY + "&language=fr&region=FR&callback=initMap").json()
+        gmaps_response = requests.get(
+            f"https://maps.googleapis.com/maps/api/geocode/json?address={self.parsed_question}&key={GOOGLE_API_KEY}&language=fr&region=FR&callback=initMap")
 
-            if gmaps_json_response["status"] == "ZERO_RESULTS":
-                return gmaps_json_response["status"]
+        if gmaps_response.ok:
+            gmaps_json_response = gmaps_response.json()
 
-            else:
+            if gmaps_json_response["status"] != "ZERO_RESULTS":
                 formatted_address = gmaps_json_response['results'][0]['formatted_address']
                 coordinates = gmaps_json_response['results'][0]['geometry']['location']
-                return(formatted_address, coordinates)
+                return (formatted_address, coordinates)
+            else:
+                return gmaps_json_response["status"]
 
-        except Exception as e:
-            return ("An exception occured while fetching the Google Maps API data.", e)
+        else:
+            return "An exception occured while requesting the Google Maps API data."

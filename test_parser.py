@@ -1,4 +1,4 @@
-import utils.parser as parser
+from utils.parser import Parser
 
 # mock questions list
 question00 = "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"

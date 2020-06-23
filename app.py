@@ -22,20 +22,22 @@ def question_handler():
     parsed_question = parser.parse()
 
     if parsed_question != "ignore":
-        gmaps = GmapsFetcher(parsed_question)
-        gmaps_json_data = gmaps.get_json_data()
+        try:
+            gmaps = GmapsFetcher(parsed_question)
+            gmaps_json_data = gmaps.get_json_data()
 
-        if gmaps_json_data != "ZERO_RESULTS":
-            try:
+            if gmaps_json_data != "ZERO_RESULTS":
                 mwiki = MwikiFetcher(gmaps_json_data[1])
-                extract = mwiki.get_extract()
+                info = mwiki.get_page_id_and_title()
+                extract = mwiki.get_extract(info[0], info[1])
+                print(extract)
                 return jsonify(gmaps_json_data[0], gmaps_json_data[1], extract)
+            else:
+                return jsonify(gmaps_json_data)
 
-            except (KeyError, ConnectionError):
-                return jsonify("error")
+        except (KeyError, ConnectionError):
+            return jsonify("error")
 
-        else:
-            return jsonify("ZERO_RESULTS")
     else:
         return jsonify("ignore")
 

@@ -1,6 +1,8 @@
-import utils.googlemaps as gmaps
+import unittest
+from utils.googlemaps import GmapsFetcher, GOOGLE_API_KEY
+from unittest.mock import patch
 
-# mock Gmaps api data
+# Mock 1
 gmaps_mock = {
     "results": [
         {
@@ -93,6 +95,7 @@ gmaps_mock = {
     "status": "OK"
 }
 
+# Mock 2
 gmaps_no_result_mock = {
     "results": [
 
@@ -100,12 +103,39 @@ gmaps_no_result_mock = {
     "status": "ZERO_RESULTS"
 }
 
-parsed_question = "palais elysée"
-gibberish_parsed_question = "qsdqsdqsd"
+
+class TestGoogleMaps(unittest.TestCase):
+
+    def setUp(self):
+        self.gmaps_test = GmapsFetcher('openclassrooms')
+
+    def test_get_json_data(self):
+        with patch('utils.googlemaps.requests.get') as mocked_get:
+
+            # Test 1 (request successful)
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.json = lambda: gmaps_mock
+
+            test_result = self.gmaps_test.get_json_data()
+            expected_result = (
+                "55 Rue du Faubourg Saint-Honoré, 75008 Paris, France", {"lat": 48.8704156, "lng": 2.3167539})
+            self.assertEqual(test_result, expected_result)
+
+            # Test 2 (request successful but no matching result)
+            mocked_get.return_value.ok = True
+            mocked_get.return_value.json = lambda: gmaps_no_result_mock
+
+            test_result = self.gmaps_test.get_json_data()
+            expected_result = "ZERO_RESULTS"
+            self.assertEqual(test_result, expected_result)
+
+            # Test 3 (request failed)
+            mocked_get.return_value.ok = False
+
+            test_result = self.gmaps_test.get_json_data()
+            expected_result = "An exception occured while requesting the Google Maps API data."
+            self.assertEqual(test_result, expected_result)
 
 
-def test_get_json_data():
-    assert gmaps.get_json_data(parsed_question) == (
-        gmaps_mock['results'][0]['formatted_address'], gmaps_mock['results'][0]['geometry']['location'])
-    assert gmaps.get_json_data(
-        gibberish_parsed_question) == gmaps_no_result_mock["status"]
+if __name__ == '__main__':
+    unittest.main()
