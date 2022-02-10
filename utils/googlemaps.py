@@ -17,6 +17,8 @@ class GmapsFetcher():
             gmaps_json_response = gmaps_response.json()
 
             if gmaps_json_response["status"] != "ZERO_RESULTS":
+                print(1, gmaps_json_response)
+                print(2, gmaps_json_response["status"])
                 formatted_address = gmaps_json_response['results'][0]['formatted_address']
                 coordinates = gmaps_json_response['results'][0]['geometry']['location']
                 return (formatted_address, coordinates)
