@@ -47,6 +47,7 @@ expected_results = [
     "ignore"
 ]
 
+
 class TestWikiMedia(unittest.TestCase):
 
     def test_parse_auto(self):

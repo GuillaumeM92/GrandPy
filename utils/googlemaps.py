@@ -1,5 +1,5 @@
+import os
 import requests
-from env_vars import GOOGLE_API_KEY
 
 
 class GmapsFetcher():
@@ -7,11 +7,12 @@ class GmapsFetcher():
 
     def __init__(self, parsed_question):
         self.parsed_question = parsed_question
+        self.gmaps_key = os.getenv("GOOGLE_API_KEY")
 
     def get_json_data(self):
 
         gmaps_response = requests.get(
-            f"https://maps.googleapis.com/maps/api/geocode/json?address={self.parsed_question}&key={GOOGLE_API_KEY}&language=fr&region=FR&callback=initMap")
+            f"https://maps.googleapis.com/maps/api/geocode/json?address={self.parsed_question}&key={self.gmaps_key}&language=fr&region=FR&callback=initMap")
 
         if gmaps_response.ok:
             gmaps_json_response = gmaps_response.json()

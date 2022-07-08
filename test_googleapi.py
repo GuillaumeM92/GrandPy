@@ -1,5 +1,5 @@
 import unittest
-from utils.googlemaps import GmapsFetcher, GOOGLE_API_KEY
+from utils.googlemaps import GmapsFetcher
 from unittest.mock import patch
 
 # Mock 1

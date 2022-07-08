@@ -7,7 +7,6 @@ click==7.1.2
 colorama==0.4.3
 coverage==5.1
 Flask==1.1.2
-# get==2019.4.13
 gunicorn==20.0.4
 idna==2.9
 itsdangerous==1.1.0
@@ -16,11 +15,11 @@ MarkupSafe==1.1.1
 more-itertools==8.4.0
 packaging==20.4
 pluggy==0.13.1
-# post==2019.4.13
 public==2019.4.13
 py==1.10.0
 pyparsing==2.4.7
 pytest==5.4.3
+python-dotenv==0.15.0
 pytz==2020.1
 query-string==2019.4.13
 requests

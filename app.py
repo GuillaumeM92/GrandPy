@@ -1,16 +1,21 @@
+import os
 from utils.parser import Parser
-from utils.googlemaps import GmapsFetcher, GOOGLE_API_KEY
+from utils.googlemaps import GmapsFetcher
 from utils.mediawiki import MwikiFetcher
-import requests
-from flask import Flask, jsonify, request, render_template, json
+from flask import Flask, jsonify, request, render_template
+from dotenv import load_dotenv
 
+
+# Environment variables
+load_dotenv()
+gmaps_key = os.getenv("GOOGLE_API_KEY")
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', GMAPS_API_KEY=GOOGLE_API_KEY)
+    return render_template('index.html', GMAPS_API_KEY=gmaps_key)
 
 
 @app.route('/question_handler', methods=['GET', 'POST'])

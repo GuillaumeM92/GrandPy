@@ -1,5 +1,4 @@
 import re
-from flask import request, jsonify
 from utils.stopwords import stopwords
 
 
