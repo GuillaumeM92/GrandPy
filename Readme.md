@@ -1,7 +1,7 @@
 # GrandPy
 Repository pour le Projet 7 de mon parcours de formation "Développeur d'Applications Python" chez OpenClassrooms.  
   
-Adresse du site : https://grandpyweb.herokuapp.com/
+Adresse du site : https://grandpy.guillaume-merle.me/
 
 ## Description du Projet
 Ce projet est une application web construite avec **Flask** qui permet à l'utilisateur de discuter avec GrandPy pour lui demander l'adresse d'un endroit qui l'intéesse.  
@@ -13,7 +13,7 @@ GrandPy en profite alors pour raconter une anecdote qu'il juge pertinente (tiré
 * Réponses variées de la part de GrandPy.
 
 ## Parcours utilisateur
-L'utilisateur ouvre son navigateur et se rend sur grandpyweb.herokuapp.com :
+L'utilisateur ouvre son navigateur et se rend sur grandpy.guillaume-merle.me :
 * L'utilisateur tape "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?" dans le champ de formulaire puis appuie sur la touche Entrée.
 * Le message s'affiche dans la zone de chat qui affiche tous les messages échangés. Une icône apparaît pour indiquer que GrandPy est en train de réfléchir.
 * Puis un nouveau message apparaît : "Je m'en occuppe ! La voici : 7 cité Paradis, 75010 Paris." En-dessous, une anecdote tirée de Wikipedia apparaît, ainsi qu'une carte Google Maps avec un marqueur indiquant l'adresse demandée.
