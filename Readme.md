@@ -1,7 +1,7 @@
 # GrandPy
 Repository pour le Projet 7 de mon parcours de formation "Développeur d'Applications Python" chez OpenClassrooms.  
   
-Adresse du site : https://grandpy.guillaume-merle.me/
+Adresse du site : https://grandpy.guillaume-merle.fr/
 
 ## Description du Projet
 Ce projet est une application web construite avec **Flask** qui permet à l'utilisateur de discuter avec GrandPy pour lui demander l'adresse d'un endroit qui l'intéesse.  
